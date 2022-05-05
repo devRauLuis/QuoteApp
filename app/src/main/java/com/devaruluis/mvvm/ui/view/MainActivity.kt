@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         quoteViewModel.onCreate()
         colorViewModel.onCreate()
 
-        quoteViewModel.quoteModel.observe(this, Observer {
+        quoteViewModel.quote.observe(this, Observer {
             binding.tvQuote.text = it?.quote
             binding.tvAuthor.text = it?.author
         })
