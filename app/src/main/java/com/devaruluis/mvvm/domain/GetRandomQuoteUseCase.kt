@@ -1,12 +1,12 @@
 package com.devaruluis.mvvm.domain
 
-import com.devaruluis.mvvm.data.model.QuoteModel
-import com.devaruluis.mvvm.data.model.QuoteProvider
+import com.devaruluis.mvvm.data.QuoteRepository
+import com.devaruluis.mvvm.domain.model.Quote
 import javax.inject.Inject
 
-class GetRandomQuoteUseCase @Inject constructor() {
-    operator fun invoke(): QuoteModel? {
-        val quotes = QuoteProvider.quotes
+class GetRandomQuoteUseCase @Inject constructor(private val repository: QuoteRepository) {
+    suspend operator fun invoke(): Quote? {
+        val quotes = repository.getAllQuotesFromDatabase()
         if (!quotes.isNullOrEmpty()) {
             val randomNumber = (quotes.indices).random()
             return quotes[randomNumber]
